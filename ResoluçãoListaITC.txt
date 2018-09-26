@@ -1,0 +1,576 @@
+
+Aluno: Vítor Carvalho Marx Lima
+
+Matrícula: 11821ECP015
+
+Resolução Lista:
+
+
+------------------------------------------------------------------------------------------
+
+--Exercício 1:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+
+int a,b,cont;
+int main() {
+	
+	do{
+	system("cls");
+	printf("\nEntre o valor de A:\n");
+	scanf("%d",&a);
+	printf("\nEntre o valor de B:\n");
+	scanf("%d",&b);
+	if(a%b==0)
+	printf("\nA e divisivel por B.\n");
+	else
+	printf("\nA nao e divisivel por B.\n");
+	printf("\nSe deseja reutilizar o programa entre 1, caso contrario entre 2.\n");
+	scanf("%d", &cont);
+}while(cont==1);
+
+	getch();
+	return 0;
+}
+
+------------------------------------------------------------------------------------------
+
+--Exercício 2:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+
+int h,m,s,durah,duram,duras,cont,durath,duratm,durats;
+
+int dias(int n){
+	printf("O horario do termino do experimento sera %d horas %d minutos e %d segundos %d dias apos a data de inicio.",durath,duratm,durats,n);
+}
+
+int main(){
+	do{
+	int dia=0;
+	system("cls");
+	printf("\nEntre a hora de comeco do experimento:.\n");
+	scanf("%d",&h);
+	while(h<0){
+	printf("\nEntre um valor positivo para hora de comeco do experimento:.\n");
+	scanf("%d",&h);
+	}
+	printf("\nEntre os minutos da hora do comeco do experimento:.\n");
+	scanf("%d",&m);
+        while(m<0){
+	printf("\nEntre um valor positivo para os minutos do comeco do experimento:.\n");
+	scanf("%d",&m);
+	}
+	printf("\nEntre os segundos da hora do comeco do experimento:.\n");
+	scanf("%d",&s);
+	while(s<0){
+	printf("\nEntre um valor positivo para os segundos do comeco do experimento:.\n");
+	scanf("%d",&s);
+	}
+	printf("\nEntre o numero de horas de duracao do experimento:.\n");
+	scanf("%d",&durah);
+	while(durah<0){
+	printf("\nEntre um numero positivo de horas de duracao do experimento:.\n");
+	scanf("%d",&durah);
+	}
+	printf("\nEntre o numero de minutos de duracao do experimento:.\n");
+	scanf("%d",&duram);
+	while(duram<0){
+	printf("\nEntre um numero positivo de minutos de duracao do experimento:.\n");
+	scanf("%d",&duram);
+	}
+	printf("\nEntre o numero de segundos de duracao do experimento:.\n");
+	scanf("%d",&duras);
+	while(duras<0){
+	printf("\nEntre um numero positivo de segundos de duracao do experimento:.\n");
+	scanf("%d",&duras);
+	}
+	durath=h+durah;
+	duratm=m+duram;
+	durats=s+duras;
+	while(durats>=60){
+		durats-=60;
+		duratm++;
+	}
+	while(duratm>=60){
+		duratm-=60;
+		durath++;
+	}
+	while(durath>=24){
+		durath-=24;
+		dia++;
+	}
+	dias(dia);
+	printf("\nSe deseja reutilizar o programa entre 1, caso contrario entre 2.\n");
+	scanf("%d", &cont);
+}while(cont==1);
+	
+	getch();
+	return 0;
+}
+
+
+------------------------------------------------------------------------------------------
+
+Exercício 3:
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+ 
+int ano,cont;
+int main(){
+	do{
+	system("cls");
+	printf("\nEntre o valor do ano desejado:\n");
+	scanf("%d",&ano);
+	if(ano%4==0 && ano%100!=0 || ano%400==0)
+		printf("\nO ano %d e bissexto.\n",ano);
+	else
+	printf("\nO ano %d nao e bissexto.\n",ano);
+	printf("\nSe deseja reutilizar o programa entre 1, caso contrario entre 2.\n");
+	scanf("%d",&cont);
+	}while(cont==1);
+}
+
+------------------------------------------------------------------------------------------
+
+Exercício 4:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+ 
+ int num,soma,cont;
+ 
+ int soma_termos(int n){
+ 	int a1,a2,a3;
+ 	a1=num/100;
+ 	if(num>=100){
+ 		a2=(num-a1*100)/10;
+ 		a3=num-(a1*100+a2*10);
+	 }
+	 else{
+	 	a2=num/10;
+	 	a3=num-(a2*10);
+	 }
+	 soma=a1+a2+a3;
+	 printf("\nO resultado da soma dos algarismos do numero %d e: %d\n",n,soma);
+ }
+ 
+ int main(){
+ 	do{
+ 	system("cls");
+ 	printf("\nEntre um numero com ate 3 algarismos.\n");
+ 	scanf("%d",&num);
+ 	soma_termos(num);
+ 	printf("\nCaso deseje reutilizar o programa entre 1, caso contrario entre 2.\n");
+ 	scanf("%d",&cont);
+ 	}while(cont==1);
+ }
+
+------------------------------------------------------------------------------------------
+
+Exercício 5:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+ 
+ int valor,cont;
+ int pagamento(int n){
+ 	int a1,a2,a3,a4,a5,a6;
+ 	a1=n/50;
+ 	a2=n%50/20;
+ 	a3=((n%50)%20)/10;
+ 	a4=(((n%50)%20)%10)/5;
+ 	a5=((((n%50)%20)%10)%5)/2;
+ 	a6=(((((n%50)%20)%10)%5)%2)/1;
+ 	printf("O valor de min de notas e %d notas de 50 ,%d notas de 20, %d notas de 10, %d notas de 5, %d notas de 2, %d notas de 1.",a1,a2,a3,a4,a5,a6);
+ }
+ 
+int main(){
+	do{
+	system("cls");
+	printf("\nEntre o valor da conta que deseja pagar:\n");
+	scanf("%d",&valor);
+	pagamento(valor);
+	printf("\nDeseja reutilizar o programa? Se sim entre 1, se nao entre 2.\n");
+	scanf("%d",&cont);
+	}while(cont==1);
+	
+	getch();
+	return 0;
+}
+
+------------------------------------------------------------------------------------------
+
+Exercício 6:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+float i;
+
+int exp2(int n){
+	int expo=n*n;
+	return expo;
+}
+float raiz(float n){
+	for(i=0.01;i*i<n;i+=0.01);
+	return i;
+}
+
+                             
+float z1,w1,moduloz,modulow,zreal,zimag,wreal,wimag,kreal,kimag,nreal,nimag,preal,pimag;
+
+int main(){
+	printf("\nEntre o valor da parte real de z:\n");
+	scanf("%f",&zreal);
+	printf("\nEntre o coeficiente da parte imaginaria de z:\n");
+	scanf("%f",&zimag);
+	printf("\nEntre o valor da parte real de w:\n");
+	scanf("%f",&wreal);
+	printf("\nEntre o coeficiente da parte imaginaria de w:\n");
+	scanf("%f",&wimag);
+	kreal=zreal+wreal;
+	kimag=zimag+wimag;
+	nreal=zreal-wreal;
+	nimag=zimag-wimag;
+	z1=exp2(zreal)+exp2(zimag);
+	w1=exp2(wreal)+exp2(wimag);
+	preal=(zreal*wreal)-(zimag*wimag);
+	pimag=(zreal*wimag)+(zimag*wreal);
+	moduloz=raiz(z1);
+	modulow=raiz(w1);
+	if(kimag>=0)
+	printf("\nO resultado da soma dos complexos z e w sera %.0f+%.0f(i).\n",kreal,kimag);
+	else
+	printf("\nO resultado da soma dos complexos z e w sera %.0f%.0f(i).\n",kreal,kimag);
+	if(nimag>=0)
+	printf("\nO resultado da subtracao dos complexos z e w sera %.0f+%.0f(i).\n",nreal,nimag);
+	else
+	printf("\nO resultado da subtracao dos complexos z e w sera %.0f%.0f(i).\n",nreal,nimag);
+	if(pimag>=0)
+	printf("\nO resultado do produto dos complexos z e w sera %.0f+%.0f(i).\n",preal,pimag);
+	else
+	printf("\nO resultado do produto dos complexos z e w sera %.0f%.0f(i).\n",preal,pimag);
+	printf("\nO modulo de z sera igual a: %.2f\n",moduloz);
+	printf("\nO modulo de w sera igual a: %.2f\n",modulow);
+		
+}
+
+------------------------------------------------------------------------------------------
+
+Exercício 7:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <math.h>
+double rad,raio,x,y,res;
+int menu(){
+	printf("\n\nEntre o valor do Raio:\n\n");
+	scanf("%lf",&raio);
+	printf("\n\nEntre com o valor do angulo em radianos:\n\n");
+	scanf("%lf",&rad);
+	x=cos(rad)*raio;
+	y=sin(rad)*raio;
+	
+	printf("\n\nA coordenada cartesiana do seu ponto de raio %lf e argumento %lf e igual a : x=  %lf e y=  %lf\n\n",raio,rad,x,y);
+}
+
+int main(){
+	menu();
+	
+}
+
+------------------------------------------------------------------------------------------
+
+Exercício 8:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+int cont=1,num1,num2,den1,den2,result,res1,res2,produtonum,produtoden,produtonumfinal,produtodenfinal,somanum1,somanum2,somafinalnum,denfinal,subnumfinal,quocienteden,quocientenum,quocientenumfinal,quocientefinalden;
+int maxdiv(int n, int b){
+	int acum=1;
+	for(int i=2;i<=n;i++){
+		while(n%i==0&&b%i==0){
+			n=n/i;
+			b=b/i;
+			acum=acum*i;
+		}
+	}
+	return acum;
+}
+int minmult(int n,int b){
+	int acum=1,acum2=1,acum3=1,res,maior;
+	if(n>b){
+		maior=n;
+	}
+	else{
+		maior=b;
+	}
+	for(int i =2;i<=maior;i++){
+		while(n%i==0 || b%i==0){
+			if(n%i==0 && b%i==0){
+				n=n/i;
+				b=b/i;
+				acum=acum*i;
+			}
+			if(n%i==0){
+				n=n/i;
+				acum2=acum2*i;
+			}
+			if(b%i==0){
+				b=b/i;
+				acum3=acum3*i;
+			}
+		}
+	}
+	res=acum2*acum*acum3;
+	return res;
+}
+
+int menu(){
+	system("cls");
+	printf("\nEntre o numerador da fracao 1.\n\n");
+	scanf("%d",&num1);
+	printf("\nEntre o denominador da fracao 1.\n\n");
+	scanf("%d",&den1);
+	printf("\nEntre o numerador da fracao 2.\n\n");
+	scanf("%d",&num2);
+	printf("\nEntre o denominador da fracao 2.\n\n");
+	scanf("%d",&den2);
+	somanum1=num1*(minmult(den1,den2)/den1);
+	somanum2=num2*(minmult(den1,den2)/den2);
+	somafinalnum=somanum1+somanum2;
+	denfinal=minmult(den1,den2);
+	printf("\n\nO valor da soma das fracoes %d/%d e %d/%d sera %d/%d.\n\n",num1,den1,num2,den2,somafinalnum,denfinal);
+	subnumfinal=somanum1-somanum2;
+	printf("\n\nO valor da subtracao das fracoes %d/%d e %d/%d sera %d/%d.\n\n",num1,den1,num2,den2,subnumfinal,denfinal);
+	res1=maxdiv(num1,den1);
+	res2=maxdiv(num2,den2);
+	num1=num1/res1;
+	den1=den1/res1;
+	num2=num2/res2;
+	den2=den2/res2;
+	produtonum=(num1*num2);
+	produtoden=(den1*den2);
+	produtonumfinal=produtonum/maxdiv(produtonum,produtoden);
+	produtodenfinal=produtoden/maxdiv(produtonum,produtoden);
+	printf("\n\nO valor da fracao final da multiplicacao das fracoes %d/%d e %d/%d sera igual a %d/%d.\n\n",num1,den1,num2,den2,produtonumfinal,produtodenfinal);
+	quocientenum=num1*den2;
+	quocienteden=den1*num2;
+	quocientenumfinal=quocientenum/maxdiv(quocientenum,quocienteden);
+	quocientefinalden=quocienteden/maxdiv(quocientenum,quocienteden);
+	printf("\n\nO valor da fracao final do quociente das fracoes %d/%d e %d/%d sera igual a %d/%d.\n\n",num1,den1,num2,den2,quocientenumfinal,quocientefinalden);
+	printf("\n\n Se deseja reutilizar o programa entre com 1, caso deseje sair, entre 2.\n\n");
+	scanf("%d",&cont);
+	
+}
+int main(){
+	do{
+	menu();
+	}while(cont==1);
+	getch();
+	return 0;
+}
+
+------------------------------------------------------------------------------------------
+
+Exercício 9:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+float num;
+int cont=1;
+int menu(){
+	do{
+	system("cls");
+	printf("Entre um numero.\n\n");
+	scanf("%f",&num);
+	printf("\n\nA lista sera:\n\n");
+	while(num<=100){
+		printf("%.0f\n",num);
+		num*=3;
+	}
+	printf("%.0f\n",num);
+	printf("\n\nSe deseja utilizar novamente o prgrama entre 1, caso deseje sair entre 2.\n\n");
+	scanf("%d",&cont);
+	}while(cont==1);
+	getch();
+	return 0;
+}
+
+int main(){
+	do{
+	menu();
+	}while(cont==1);
+}
+
+------------------------------------------------------------------------------------------
+
+Exercício 10:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+
+float res1,res2,resparalelo,acum=0,cont=1;
+
+int main(){
+	do{
+	acum=0;
+	do{
+	system("cls");
+	printf("\nEntre o valor da resistencia 1\n");
+	scanf("%f",&res1);
+	printf("\nEntre o valor da resistencia 2\n");
+	scanf("%f",&res2);
+	if(res1==0 || res2==0)
+		resparalelo=0;
+	else
+	resparalelo=res1*res2/(res1+res2);
+	acum+=resparalelo;
+	printf("O valor da resistencia equivalente entre %f e %f sera %.3f.\n\n",res1,res2,resparalelo);
+	printf("O valor da resistencia equivalente em paralelo de todas as resistencias ate agora sera %.3f.\n\n",acum);
+	}while(res1!=0 && res2!=0);
+	printf("\n\nSe deseja utilizar novamente entre 1, caso deseje sair entre 2.\n\n");
+	scanf("%f",&cont);
+	}while(cont==1);
+	getch();
+	return 0;
+	
+}
+
+------------------------------------------------------------------------------------------
+
+Exercício 11:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+int cont=1;
+int menu(){
+	int acum=0,acum1=0,num1,num2;
+	system("cls");
+	printf("\n\nEntre o numero que deseja usar para comecar a contagem regressiva.\n\n");
+	scanf("%d",&num1);
+	printf("\n\nEntre o numero que deseja usar para parar a contagem regressiva.\n\n");
+	scanf("%d",&num2);
+	
+	printf("\n\nA contagem regressiva usando o loop while:\n\n");
+	int i=num1;
+	while(i>=num2){
+		printf("%d\n",i);
+		acum+=i;
+		i--;
+	}
+	printf("\n\nA soma desses numeros usando while loop:\n\n");
+	printf("%d",acum);
+	
+	printf("\n\nA contagem regressiva usando o loop for:\n\n");
+   	for(int i=num1;i>=num2;i--){
+		printf("%d\n",i);
+		acum1+=i;
+	}
+	printf("\n\nA soma desses numeros usando for loop:\n\n");
+	printf("%d\n\n",acum1);
+	printf("\n\nSe deseja reutilizar o programa entre 1, caso deseje sair entre 2.\n\n");
+	scanf("%d",&cont);
+}
+int main(){
+	do{
+	menu();
+	}while(cont==1);
+	getch();
+	return 0;
+	
+}
+
+------------------------------------------------------------------------------------------
+
+Exercício 12:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+int cont=1,acum=0,acum1=0,acum2=0,acum3=0,num;
+int menu(){
+	system("cls");
+	printf("\n\nEscolha ate qual numero deseja saber a quantidade de multiplos de 2,3,5 isolados e de 2,3,5 ao mesmo tempo:\n\n");
+	scanf("%d",&num);
+	for(int i=1;i<=num;i++){
+		if(i%2==0){
+			acum=acum+1;
+		}
+	}
+	for(int i=1;i<=num;i++){
+		if(i%3==0){
+			acum1=acum1+1;
+		}
+	}
+	for(int i=1;i<=num;i++){
+		if(i%5==0){
+			acum2=acum2+1;
+		}
+	}
+	for(int i=1;i<=num;i++){
+		if(i%2==0&&i%3==0&&i%5==0){
+			acum3=acum3+1;
+		}
+	}
+	
+	printf("\n\nHa %d multiplos de 2 entre 1 e %d\n\n",acum,num);
+	printf("\n\nHa %d multiplos de 3 entre 1 e %d\n\n",acum1,num);
+	printf("\n\nHa %d multiplos de 5 entre 1 e %d\n\n",acum2,num);
+	printf("\n\nHa %d multiplos de 2,3 e 5 entre 1 e %d\n\n",acum3,num);
+	printf("Se deseja reutilizar o programa entre 1,caso deseje sair entre 2.\n\n");
+	scanf("%d",&cont);
+
+}
+
+int main(){
+	do{
+	menu();
+	}while(cont==1);
+	getch();
+	return 0;
+	
+}
+
+------------------------------------------------------------------------------------------
+
+Exercício 13:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+int cont=1;
+int main(){
+	do{
+	system("cls");
+	int base,expo,acum=1;
+	printf("Entre o valor da base:\n\n");
+	scanf("%d",&base);
+	printf("Entre o valor do expoente:\n\n");
+	scanf("%d",&expo);
+	for(int i=1;i<=expo;i++){
+	acum*=base;
+	}
+	printf("O valor de %d elevado a %d e igual a :%d",base,expo,acum);
+	printf("\n\nSe deseja reutilizar o programa entre 1,caso deseje sair entre 2.\n\n");
+	scanf("%d",&cont);
+	}while(cont==1);
+}
+
+
+
