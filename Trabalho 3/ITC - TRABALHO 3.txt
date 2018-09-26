@@ -1,0 +1,133 @@
+ITC-TRABALHO 3
+Aluno: Vítor Carvalho Marx Lima
+Matrícula: 11821ECP015
+
+Resolução:
+
+1 - Escreva um programa que calcule e mostre o valor da série abaixo. (Some 20 termos da série).
+
+
+S= 63 + (61/1!) + (59/2!) + (57/3!) + ...
+
+****Solução(Código):
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+//Essa funcao serve pra calcular o fatorial
+double fat(double n){
+	double res=1;
+	while(n>1){
+		res*=n;
+		n--;
+	}
+	return res;
+}
+
+int main(){
+	double cal=0,nume=61,deno=1,t1=63,acum,soma;
+	for(int i=1;i<=20;i++){
+		acum= nume/fat(deno);
+		nume=nume-2;
+		deno=deno+1;
+		cal+=acum;
+	}
+	soma=t1+cal;
+	printf("\nO resultado da soma dessa serie ate o termo 20 e: %lf\n", soma);
+
+	getch();
+	return 0;	
+}
+
+
+****Segunda solução(caso o usuário deseje escolher até qual termo a série deve ser somada):
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+//Essa função serve pra calcular o fatorial
+double fat(double n){
+	double res=1;
+	while(n>1){
+		res*=n;
+		n--;
+	}
+	return res;
+}
+//Essa variável serve pra definir se o usuário quer ou não reutilizar o programa
+int cont;
+
+int main(){
+	do{
+	double n,cal=0,nume=61,deno=1,t1=63,acum,soma;
+	system("cls");
+	printf("\nDigite ate qual termo essa soma deve ser realizada:\n");
+	scanf("%lf",&n);
+	while(n<0){
+		printf("\nEntre com um numero positivo para ate qual termo essa soma deve ser realizada:\n");
+		scanf("%lf",&n);
+	}
+	for(int i=1;i<n;i++){
+		acum= nume/fat(deno);
+		nume=nume-2;
+		deno=deno+1;
+		cal+=acum;
+	}
+	soma=t1+cal;
+	printf("\nO resultado da soma dessa serie ate o termo %lf e: %lf\n", n, soma);
+	printf("\nDeseja reutilizar o programa? Caso sim entre 1, caso nao entre 2\n");
+	scanf("%d",&cont);
+}while (cont==1);
+	
+	getch();
+	return 0;	
+}
+
+
+
+
+2 – Faça um programa que mostre os números na tela conforme mostrado abaixo. O usuário escolherá quantas linhas serão apresentadas (n). 
+
+1
+2 4
+3 6 9
+4 8 12 16
+.
+.
+.
+n
+
+****Solução(Código):
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+int aux=0,cont;
+int seq(int n){
+	for(int j=1;j<=n;j++){
+		aux=0;
+	for(int i=0;i<j;i++){
+		aux+=j;
+		printf("%d ",aux);
+		}
+		printf("\n");
+	}
+}
+int main(){
+	do{
+	system("cls");
+	int linha;
+	printf("\nDigite ate qual linha a cascata deve ser executada:\n\n");
+	scanf("%d",&linha);
+	printf("\n\n");
+	seq(linha);	
+	printf("\nDeseja reutilizar o programa?\nCaso sim, entre 1, caso queira sair enrte 2.\n");
+	scanf("%d",&cont);
+	}while(cont==1);
+	printf("\nVoce saiu do programa.Aperte qualquer tecla para continuar.\n");
+
+	getch();
+	return 0;		
+}

@@ -1,0 +1,117 @@
+
+Enunciado:
+
+***Faça um programa em C que possua um menu de escolhas com as seguintes opções: 
+
+	1) Cálculo de n! ;
+
+	2) Cálculo de n^x ;
+
+	3) Encontrar o máximo divisor comum entre dois números digitados pelo usuário.
+
+Cada opção deve ser programada em uma função independente, chamada dentro main( ) .***
+
+
+
+
+
+Solução(Código):
+
+#include <stdio.h>
+#include <conio.h>
+#include <stdlib.h>
+int num,res,base,exp,num1,num2,b,cont=0;
+int fat(int n){
+	int aux=1,k=n;
+	for(int i=1;i<=n;i++){
+		aux*=k;
+		k--;
+	}
+	return aux;
+}
+
+int exponencial(int n){
+	int aux=1;
+	for(int i=1;i<=n;i++){
+		aux*=base;
+	}
+	return aux;
+}
+
+int maxdiv(int n){
+	int aux1=n,aux2=num2,acum=1;
+	for(int i=2;i<=n;i++){
+		while(aux1%i==0 && aux2%i==0){
+			aux1=aux1/i;
+			aux2=aux2/i;
+			acum*=i;
+		}
+	}
+	return acum;
+}
+
+int chamarfat(){
+	system("cls");
+	printf("Entre o valor do numero para saber seu fatorial.\n");
+	scanf("%d",&num);
+	res=fat(num);
+	printf("\nO fatorial de %d e %d.\n",num,res);
+	printf("Entre 1 para voltar para o menu, ou 2 para sair.\n");
+	scanf("%d",&cont);
+}
+
+int chamarexpo(){
+	system("cls");
+	printf("Entre a base.\n");
+	scanf("%d",&base);
+	printf("Entre o expoente.\n");
+	scanf("%d",&exp);
+	res=exponencial(exp);
+	printf("O resultado de %d elevado a %d e %d",base,exp,res);
+	printf("Entre 1 para voltar para o menu, ou 2 para sair.\n");
+	scanf("%d",&cont);
+}
+
+int chamarmaxdiv(){
+	system("cls");
+	printf("Entre o primeiro numero.\n");
+	scanf("%d",&num1);
+	printf("Entre o segundo numero.\n");
+	scanf("%d",&num2);
+	res=maxdiv(num1);
+	printf("O maximo divisor comum entre %d e %d e %d.\n",num1,num2,res);
+	printf("Entre 1 para voltar para o menu, ou 2 para sair.\n");
+	scanf("%d",&cont);
+}
+
+int Sair(){
+	cont = 2;
+	printf("Voce saiu do programa!");
+}
+
+int Menu(){
+	system("cls");
+	printf("Escolha uma das opcoes abaixo:\n");
+	printf("\n\n1-fatorial.\n");
+	printf("\n\n2-exponencial.\n");
+	printf("\n\n3-Maximo divisor comum.\n");
+	printf("\n\n4-Sair.\n\n\n");
+	scanf("%d",&b);
+	
+
+	
+	switch(b){
+			case 1 : chamarfat();break;
+			case 2 : chamarexpo();break;
+			case 3 : chamarmaxdiv();break;
+			case 4:  Sair();break;
+	}
+}
+
+int main(){
+	do{
+	Menu();
+	}while(cont==1);
+	getch();
+	return 0;
+}

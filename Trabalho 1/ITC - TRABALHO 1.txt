@@ -1,0 +1,94 @@
+1° Trabalho de ITC:
+Aluno: Vítor Carvalho Marx Lima
+Curso: Engenharia da Computação
+Turma: VC (Quarta-Feira 16:50-18:30)
+Enunciado:
+_ Faça um programa que receba:
+_ O código do estado de origem da carga de um caminhão, supondo que a
+digitação do código do estado seja sempre válida, ou seja, um número
+inteiro entre 1 e 5.
+_ O peso da carga do caminhão em toneladas.
+_ O código da carga, supondo que a digitação do código seja sempre válida,
+ou seja, um número inteiro entre 10 e 40.
+*Tabelas:
+Código do Estado  |  Imposto
+        1              35%
+        2              25%
+        3              15%
+        4               5%
+        5              Isento
+*Preços:
+Código da Carga | Preço por quilo
+            10 a 20                     100
+            21 a 30                     250
+            31 a 40                     340   
+_ Calcule e mostre:
+_ O peso da carga do caminhão convertido em quilos e o seu preço;
+_ O valor do imposto sobre o valor da carga (depende do estado de origem);
+_ O valor total transportado pelo caminhão, preço da carga mais imposto
+
+Solução(Código):
+
+#include <stdio.h>
+#include <conio.h>
+#include  <locale.h>
+
+int main(){
+
+//Variáveis que receberão um valor de entrada
+int codigoEstado,codigoCarga;
+float peso;
+
+printf("\nEntre o codigo de Estado de origem da carga:\n");
+scanf("%d", &codigoEstado);
+while(codigoEstado<1 || codigoEstado>5){
+printf("\nEntre um  codigo de Estado entre 1 e 5:\n");
+scanf("%d", &codigoEstado);
+}
+printf("\nEntre o peso da carga em toneladas:\n");
+scanf("%f", &peso);
+while(peso<0){
+printf("\nEntre um valor em toneladas e positivo para o peso da carga:\n");
+scanf("%f", &peso);
+}
+printf("\nEntre o codigo da carga:\n");
+scanf("%d", &codigoCarga);
+while(codigoCarga<10 || codigoCarga>40){
+printf("\nEntre um codigo para a carga entre 10 e 40:\n");
+scanf("%d", &codigoCarga);
+}
+//Variáveis que depedem dos valores de entrada
+float imposto, precoCarga, pesoKg = peso * 1000;
+
+if(codigoCarga>=10 && codigoCarga<=20){
+    precoCarga= pesoKg * 100;
+}
+else if(codigoCarga>=21 && codigoCarga<=30){
+    precoCarga= pesoKg * 250;
+}
+else {
+    precoCarga= pesoKg * 340;
+}
+if(codigoEstado==1){
+    imposto= precoCarga * 0.35;
+}
+else if(codigoEstado==2){
+    imposto= precoCarga * 0.25;
+}
+else if(codigoEstado==3){
+    imposto= precoCarga * 0.15;
+}
+else if(codigoEstado==4){
+    imposto= precoCarga * 0.05;
+}
+else {
+    imposto= precoCarga * 0;
+}
+float valorTotal = precoCarga + imposto;
+printf("\nO peso da carga do caminhao em kg e: %.3fKg\n", pesoKg);
+printf("O valor do imposto sobre o valor da carga e: %.3f$\n", imposto);
+printf("O valor total transportado pelo caminhao e: %.3f$\n", valorTotal);
+getch();
+return 0;
+}
+

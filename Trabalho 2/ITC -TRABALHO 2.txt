@@ -1,0 +1,144 @@
+Aluno: Vítor Carvalho Marx Lima
+Matrícula: 11821ECP015
+
+Solução do trabalho 2 de ITC:
+
+1-Faça um programa em C que recebe um número (N) e imprime em ordem decrescente todos os números impares de N até 1.
+
+Solução(Código):
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <locale.h>
+
+int num, sub, aux, cont;
+
+int main(){
+    do
+    {
+    system("cls");
+    printf("\nEntre um numero para saber todos os numeros impares de 1 a esse numero de maneira decrescente:\n");
+    scanf("%d", &num);
+	
+
+    while(num<0){
+       printf("\nEntre com um valor positivo!\n");
+       scanf("%d", &num);
+	}
+        
+      if(num>0){
+    if(num%2==0){
+        sub=num;
+        num=num-1;
+    }
+
+    printf("\n A lista de todos os numeros impares de %d a 1:\n ", sub);
+    for(aux=num; aux>=1;){
+        if(aux%2==0)
+            aux--;
+        else{
+            printf("\n%d\n", aux);
+            aux--;
+            }
+        }
+    }
+    else
+        printf("\nO resultado e 0.\n");
+
+    printf("\nDeseja utilizar o programa mais uma vez?\nEntre : 1 para continuar ou 2 para sair.\n");
+    scanf("%d", &cont);
+}while(cont == 1);
+    printf("\nVoce saiu do programa, aperte qualquer tecla para finaliza-lo.\n");
+    getch();
+    return 0;
+}
+
+
+
+
+
+2 -Faça um programa em C que recebe um número (N) digitado pelo usuário e imprime em ordem crescente os números pares de 100 até N.
+
+Solução(Código):
+
+#include <stdio.h>
+#include <conio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+int num, sub, aux, cont;
+
+int main(){
+    do
+    {
+    system("cls");
+    printf("\nEntre um numero maior que 100 para receber todos os numeros pares de 100 ate esse numero:\n");
+    scanf("%d", &num);
+
+    while(num<100){
+    printf("\nPor favor,entre com um numero maior ou igual a 100 :\n");
+    scanf("%d", &num);
+    }
+
+    if(num%2!=0){
+        sub=num;
+        num=num-1;
+        printf("\nLista dos numeros de 100 ate %d:\n", sub);
+    }
+    else
+        printf("\nLista dos numeros de 100 ate %d:\n", num);
+
+    for(aux=100;aux<=num;){
+         if(aux%2!=0){
+            aux++;
+         }
+         else{
+            printf("\n%d\n", aux);
+            aux++;
+         }
+    }
+    printf("\nDeseja utilizar o programa mais uma vez?\nEntre : 1 para continuar ou 2 para sair.\n");
+    scanf("%d", &cont);
+    }while(cont == 1);
+    printf("\nVoce saiu do programa, aperte qualquer tecla para finaliza-lo.\n");
+    getch();
+    return 0;
+
+}
+
+
+
+
+
+
+3 -Faça um programa em C que calcule e mostre na tela uma dívida de cartão de crédito (dado de entrada) depois de 3 anos, sabendo que o juro mensal é de 7,5% (sem usar a fórmula de juros compostos – use laço).
+
+
+Solução(Código):
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <locale.h>
+
+float divida, tempo, cont;
+
+int main(){
+    do
+    {
+    system("cls");
+    printf("\nEntre o valor de sua divida atual:\n");
+    scanf("%f", &divida);
+
+    for(tempo=1;tempo<=36;tempo++){
+        divida=divida*1.075;
+    }
+    printf("\nO valor final de sua divida depois de 3 anos sera: %.4f$\n", divida);
+    printf("\nDeseja utilizar o programa mais uma vez?\nEntre : 1 para continuar ou 2 para sair.\n");
+    scanf("%f", &cont);
+    }while(cont == 1);
+     printf("\nVoce saiu do programa, aperte qualquer tecla para finaliza-lo.\n");
+     getch();
+     return 0;
+}
