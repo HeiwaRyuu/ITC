@@ -1,0 +1,112 @@
+Aluno: Vitor Carvalho Marx Lima
+Matrícula : 11821ECP015
+
+Enunciado : Faça um programa em C, utilizando vetor numérico, que leia 10 números inteiros
+positivos digitados pelo usuário. O programa deve mostrar na tela:
+
+A-- A soma e a média dos números lidos.
+
+B-- O maior número lido.
+
+C-- O menor número lido.
+
+D-- Mostrar as posições dos números maiores que a média  calculada no item A.
+
+
+Solução (Código):
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+
+int cont=1;
+float vec[30],me,ma,res_soma,res_media,aluno;
+
+void pop(float v[],float a){
+	for(int i=0;i<a;i++){
+		system("cls");
+		printf("Entre a nota do aluno %d : \n",(i+1));
+		scanf("%f",&v[i]);
+	}
+}
+
+float maior(float v[],float a){
+	float bi= v[0];
+	for(int i=1;i<a;i++){
+		if(bi<v[i]){
+			bi=v[i];
+		}
+	}
+	return bi;
+}
+
+float menor(float v[],float a){
+	float s = v[0];
+	for(int j=1;j<a;j++){
+		if(s>v[j]){
+			s=v[j];
+		}
+	}
+	return s;
+}
+
+float sum(float v[],float a){
+	float soma=0;
+	for(int p=0;p<a;p++){
+		soma+=v[p];
+	}
+	return soma;
+}
+
+float media(float r,float a){
+	float m = r/a;
+	return m;
+}
+
+void posimaior(float v[], float a,float m){
+	float nota,posi;
+	for(int i=0;i<a;i++){
+		if(v[i]>m){
+			nota=v[i];
+			posi=i;
+			printf("\n%.2f que se encontra na posicao %.2f do vetor",nota,posi);
+		}
+	}
+}
+
+int menu(){
+		do{
+	system("cls");
+	printf("\n Entre o numero de alunos :\n");
+	scanf("%f",&aluno);
+	}while(aluno<=0 || aluno>10);
+	pop(&vec[10],aluno);
+	
+	system("cls");
+	
+	res_soma=sum(&vec[10],aluno);
+	printf("\nO resultado da soma das notas e : %.2f\n",res_soma);
+	
+	res_media=media(res_soma,aluno);
+	printf("\nA media das notas e : %.2f\n",res_media);
+	
+	ma=maior(&vec[10],aluno);
+	printf("\nA maior nota e : %.2f\n",ma);
+	
+	me=menor(&vec[10],aluno);
+	printf("\nA menor nota e : %.2f\n",me);
+	
+	printf("\n Lista de notas acima da media :\n");
+	posimaior(&vec[10],aluno,res_media);
+	
+	printf("\n\n Se deseja reutilizar o prgrama entre 1, caso deseje sair entre 2\n\n");
+	scanf("%d",&cont);
+}
+
+int main(){
+	do{
+		menu();
+	}while(cont==1);
+	getch();
+	return 0;
+}

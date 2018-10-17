@@ -1,0 +1,91 @@
+Aluno : Vítor Carvalho Marx Lima
+Matrícula : 11821ECP015
+
+Enunciado do trabalho : 
+
+Trabalho: Escreva um programa que leia uma string digitada pelo
+usuário e troque os espaços entre as palavras (‘ ‘) por underline (‘_’).
+O programa deve gravar em um vetor numérico os índices das
+posições da string onde aparecem os espaços. Estes valores (índices)
+devem ser mostrados na tela a partir do vetor numérico. Divida o
+programa em funções.
+
+Solução (Código):
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+
+
+char s[50];
+int vet[50],cont=1;
+
+int caracteres(char str[]){
+		int i,cont=0;
+	for(i=0;str[i] != '\0';i++){
+		cont++;
+	}
+	return cont;
+}
+
+void trocaespaco(char str[]){
+	int i;
+	for(i=0;str[i] != '\0';i++){
+		if(str[i]==' '){
+			str[i]='_';	
+		}
+	}
+}
+
+void posicao(char str[],int v[]){
+	int i,j=0;
+	for(i=0;str[i] != '\0';i++){
+		if(str[i]=='_'){
+			v[j]= (i+1);
+			j++;
+		}
+	} 
+}
+
+
+void printnovastr(char str[]){
+	int i;
+	for(i=0;str[i] != '\0';i++){
+		printf("%c",str[i]);
+	}
+}
+
+void mostrarposicao(int v[]){
+	int i;
+	for(i=0;i<50;i++){
+		if(v[i]==0) break;
+		printf(" %d ",v[i]);
+	}
+}
+
+int menu(){
+	int res=caracteres(s);
+	do{
+		system("cls");
+		printf("Entre aqui sua string:\n");
+		fflush(stdin);
+		gets(s);
+	}while(res>=50);
+	system("cls");
+	trocaespaco(s);
+	posicao(s,vet);
+	printf("\n\nA string apos feita a troca de espacos por underlines :\n\n");
+	printnovastr(s);
+	printf("\n\nPosicoes dos indices dos espacos :\n\n");
+	mostrarposicao(vet);
+	printf("\n\nSe deseja reutilizar o programa entre 1, caso deseje sair entre 2 :\n\n");
+	scanf("%d",&cont);
+}
+
+int main(){
+	do{
+		menu();
+	}while(cont ==1);
+	getch();
+	return 0;
+}
