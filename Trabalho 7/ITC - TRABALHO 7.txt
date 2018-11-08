@@ -1,0 +1,81 @@
+Aluno : Vítor Carvalho Marx Lima
+Matrícula : 11821ECP015
+
+Enunciado:
+
+Trabalho da semana: Faça um programa em C para efetuar o seguinte calculo:
+C = A*B + 2*B - A
+Onde, A, B e C, são matrizes bidimensionais 3x3. As matrizes, A e B, serão
+preenchidas com números reais, informados pelo usuário. Mostre os números
+armazenados na matriz C na tela.
+Obs: O programa deve ser dividido em funções.
+
+
+Solução(Código):
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+
+float A[3][3],B[3][3],C[3][3];
+int cont=1;
+
+void slot(float m[][3]){
+	for(int i=0;i<3;i++){
+		for(int j=0;j<3;j++){
+			system("cls");
+			printf("\nEntre com o valor do elemento E%d%d da matriz :\n",i+1,j+1);
+			scanf("%f",&m[i][j]);
+		}
+	}
+}
+
+void prod(float a[][3], float b[][3], float c[][3]){
+ int L=0;
+	for(int i=0;i<3;i++){
+		int E=0;
+		for(int j=0;j<3;j++){
+			int k=0,C=0;
+			float res=0;
+			while(k<=3){
+				float aux=a[L][C]*b[C][E];
+				res+=aux;
+				C++;
+				k++;
+				}
+			E++;
+			c[i][j]=res + (2*(b[i][j]))-(a[i][j]);
+		}
+		L++;
+		}
+}
+
+void printRes(float c[][3]){
+	for(int i=0;i<3;i++){
+		for(int j=0;j<3;j++){
+			printf(" %.3f",c[i][j]);
+		}
+		printf("\n");
+	}
+}
+
+int menu(){
+	printf("Entre com os valores da matriz A :\n");
+	slot(A);
+	printf("Entre com os valores da matriz B :\n");
+	slot(B);
+	prod(A,B,C);
+	system("cls");
+	printf("A matriz C resultado e : \n\n");
+	printRes(C);
+	printf("\n\nDeseja reutilizar o programa? Caso sim entre 1, caso deseja sair entre 2.\n\n");
+	scanf("%d",&cont);
+}
+
+int main(){
+	do{
+		menu();
+	}while(cont==1);
+	getch();
+	return 0;
+}
