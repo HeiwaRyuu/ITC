@@ -1,0 +1,397 @@
+Aluno: Vitor Carvalho Marx Lima
+Matrícula : 11821ECP015
+
+Enunciado:
+
+Exercícios de laboratório e último trabalho de Laboratório:
+
+1 – Faça uma função que permita ao usuário editar os dados de um aluno já
+cadastrado.
+
+2 – Faça uma função que calcule a média dos CRAs dos alunos cadastrados e
+apresenta na tela. Além disso, esta função mostra os dados de todos os alunos
+com CRA acima desta média calculada.
+
+3 – Faça uma função que mostre os dados do(s) aluno(s) com maior CRA.
+
+4 – Faça uma função que coloque os alunos cadastrados em ordem alfabética.
+
+Obs: acrescente estas funções ao programa, permitindo que o usuário escolha
+usá-las.
+
+
+
+Solução(Código):
+
+#include <stdio.h>
+#include <conio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int quantidade_alunos=0,op;
+
+struct end{
+	char cep[100];
+	int numero;
+};
+
+struct aluno{
+	char nome[100];
+	char matricula[100];
+	float cra;
+	end endereco;
+};
+
+struct aluno v[200];
+
+void cadastra_aluno(struct aluno v[],int n){
+	system("cls");
+	
+	printf("\n\nEntre com o nome do aluno:\n\n");
+	fflush(stdin);
+	gets(v[n].nome);
+	
+	system("cls");
+	printf("\n\nEntre com a matricula:\n\n");
+	fflush(stdin);
+	gets(v[n].matricula);
+	
+	system("cls");
+	printf("\n\nEntre com o cra:\n\n");
+	scanf("%f",&v[n].cra);
+	
+	system("cls");
+	printf("\n\nEntre com o cep:\n\n");
+	fflush(stdin);
+	gets(v[n].endereco.cep);
+	
+	system("cls");
+	printf("\n\nEntre com o numero:\n\n");
+	scanf("%d",&v[n].endereco.numero);
+	
+}
+
+void pesquisar_por_matricula(struct aluno v[], int n){
+	if(n==0){
+		system("cls");
+		printf("\n\nNenhum aluno cadastrado!\n\n");
+		getch();
+	}
+	else{
+		system("cls");
+		char matricula_desejada[100];
+		int aviso=0;
+		
+		printf("\n\nEntre com a matricula do aluno desejado:\n\n");
+		fflush(stdin);
+		gets(matricula_desejada);
+		
+		for(int i=0; i<n;i++){
+			if(strcmp(matricula_desejada,v[i].matricula) == 0){
+				aviso = 1;
+				system("cls");
+				printf("\n\nAqui estao os dados cadastrais do aluno:\n\n");
+				printf("\n\n Nome: %s\n Matricula: %s\n CRA: %f\n CEP: %s\n Numero: %d",v[i].nome,v[i].matricula,v[i].cra,v[i].endereco.cep,v[i].endereco.numero);	
+			}
+		}
+		if(aviso==0){
+			system("cls");
+			printf("\n\nAluno nao cadastrado no sistema.\n\n");
+		}
+		getch();
+	}
+}
+
+void listar_cadastrados(struct aluno v[], int n){
+	if(n==0){
+		system("cls");
+		printf("\n\nNenhum aluno cadastrado!\n\n");
+		getch();
+	}
+	else{
+		system("cls");
+		printf("\t\t\n\nLista de alunos cadastrados no sistema:\n\n");
+		for(int i=0;i<n;i++){
+			printf("\n Aluno %d:",(i+1));
+			printf("\n\n Nome: %s\n Matricula: %s\n CRA: %f\n CEP: %s\n Numero: %d\n\n",v[i].nome,v[i].matricula,v[i].cra,v[i].endereco.cep,v[i].endereco.numero);
+		}
+		getch();
+	}
+}
+
+int exclui_aluno(struct aluno v[],int n){
+	if(n==0){
+		system("cls");
+		printf("\n\nNenhum aluno cadastrado!\n\n");
+		getch();
+	}
+	else{
+		system("cls");
+		char matricula_aluno_excluir[100];
+		int aviso=0,num=0,decisao;
+		
+		printf("\n\nEntre com a matricula do aluno a ser excluido:\n\n");
+		fflush(stdin);
+		gets(matricula_aluno_excluir);
+		
+		for(int i=0; i<n;i++){
+			if(strcmp(matricula_aluno_excluir,v[i].matricula) == 0){
+				aviso=1;
+				num=i;
+			}
+		}
+		if(aviso==0){
+			system("cls");
+			printf("\n\nAluno nao cadastrado no sistema.\n\n");
+		}
+		if(aviso==1){
+			system("cls");
+			printf("\n\nDeseja realmente excluir o aluno?\n\nCaso sim, entre 1, caso nao, entre 2:\n\n");
+			scanf("%d",&decisao);
+			if(decisao==1){
+				for(int i=num;i<n;i++){
+					v[i]=v[i+1];
+				}
+				n=n-1;
+				printf("\n\n Aluno excluido com sucesso, cheque a nova lista de cadastrados.\n\n");
+				getch();
+				return n;
+			}
+			else{
+				return n;
+			}
+		}	
+	}	
+}
+
+void editar_aluno(struct aluno v[],int n){
+	if(n==0){
+		system("cls");
+		printf("\n\nNenhum aluno cadastrado!\n\n");
+		getch();
+	}
+	else{
+		system("cls");
+		char matricula_aluno_desejado[100];
+		int num,d;
+		
+		printf("\n\nEntre com a matricula do aluno que deseja alterar os dados:\n\n");
+		fflush(stdin);
+		gets(matricula_aluno_desejado);
+		
+		for(int i=0;i<n;i++){
+			if(strcmp(matricula_aluno_desejado,v[i].matricula) == 0){
+				num=i;
+			}
+			else{
+				printf("\n\nAluno nao cadastrado!\n\n");
+			}
+		}
+		
+		system("cls");
+		
+		do{
+			printf("\n\nEsses saos os atuais dados cadastrais do aluno, o que deseja alterar? Entre uma das opcoes para alterar os dados.\n\n");
+			printf("\n\n Nome: %s\n Matricula: %s\n CRA: %f\n CEP: %s\n Numero: %d\n\n",v[num].nome,v[num].matricula,v[num].cra,v[num].endereco.cep,v[num].endereco.numero);
+			printf("\n 1- Nome\n 2- Matricula\n 3- CRA\n 4- CEP\n 5- Numero\n 6- Voltar ao menu\n\n");
+			scanf("%d",&d);
+			
+			switch(d){
+				case 1:
+					system("cls");
+					printf("\n\nVoce escolheu alterar o nome do aluno, entre o novo nome:\n\n");
+					fflush(stdin);
+					gets(v[num].nome);
+					printf("\n\nNome alterado com sucesso! Cheque o novo cadastro atualizado na lista de cadastrados.");
+					getch();
+					break;
+				
+				case 2:
+					system("cls");
+					printf("\n\nVoce escolheu alterar a matricula do aluno, entre com a nova matricula:\n\n");
+					fflush(stdin);
+					gets(v[num].matricula);
+					printf("\n\nMatricula alterada com sucesso! Cheque o novo cadastro atualizado na lista de cadastrados.");
+					getch();
+					break;
+				
+				case 3:
+					system("cls");
+					printf("\n\nVoce escolheu alterar o CRA do aluno, entre o novo CRA:\n\n");
+					scanf("%f",&v[num].cra);
+					printf("\n\nCRA alterado com sucesso! Cheque o novo cadastro atualizado na lista de cadastrados.");
+					getch();
+					break;
+				
+				case 4:
+					system("cls");
+					printf("\n\nVoce escolheu alterar o CEP do aluno, entre o novo CEP:\n\n");
+					fflush(stdin);
+					gets(v[num].endereco.cep);
+					printf("\n\nCEP alterado com sucesso! Cheque o novo cadastro atualizado na lista de cadastrados.");
+					getch();
+					break;
+				
+				case 5:
+					system("cls");
+					printf("\n\nVoce escolheu alterar o numero do aluno, entre o novo numero:\n\n");
+					scanf("%d",&v[num].endereco.numero);
+					printf("\n\nNumero alterado com sucesso! Cheque o novo cadastro atualizado na lista de cadastrados.");
+					getch();
+					break;
+					
+				default:
+					if(d != 6){
+						printf("\n\nOpcao invalida! Entre com uma opcao numerada no menu.");
+						getch();
+					}
+				}
+			}while(d < 1 || d > 6);
+		}
+	}
+
+void calcular_media_cra(struct aluno v[],int n){
+	if(n==0){
+		system("cls");
+		printf("\n\nNenhum aluno cadastrado!\n\n");
+		getch();
+	}
+	else{
+		system("cls");
+		float soma=0,media;
+		for(int i=0;i<n;i++){
+			soma+=v[i].cra;
+		}
+	
+		media= soma/n;
+		
+		printf("\n\nA media dos CRA's dos alunos cadastrados e: %.3f\n\n",media);
+		printf("\n\nEssa e a lista dos alunos com o CRA igual ou acima da media:\n\n");
+		for(int i=0; i<n;i++){
+			if(v[i].cra >= media){
+			printf("\n\n Nome: %s\n Matricula: %s\n CRA: %f\n CEP: %s\n Numero: %d\n\n",v[i].nome,v[i].matricula,v[i].cra,v[i].endereco.cep,v[i].endereco.numero);
+			}
+		}
+		getch();
+	}
+}
+
+void mostrar_maiores_cras(struct aluno v[],int n){
+	if(n==0){
+		system("cls");
+		printf("\n\nNenhum aluno cadastrado!\n\n");
+		getch();
+	}
+	else{
+		system("cls");
+		struct aluno a[30];
+		
+		for(int i=0;i<n;i++){
+			for(int j=(i+1);j<n;j++){
+				if(v[i].cra<=v[j].cra){
+					a[0]=v[i];
+					v[i]=v[j];
+					v[j]=a[0];
+				}
+			}
+		}
+		
+		printf("\n\nEssa e a lista com os dados dos alunos com CRA em ordem decrescente:\n\n");
+		for(int i=0;i<n;i++){
+			printf("\n\n Nome: %s\n Matricula: %s\n CRA: %f\n CEP: %s\n Numero: %d\n\n",v[i].nome,v[i].matricula,v[i].cra,v[i].endereco.cep,v[i].endereco.numero);
+		}
+		getch();
+	}
+}
+
+void coloca_em_ordem_alfabetica(struct aluno v[],int n){
+if(n != 0){
+	system("cls");
+	int j=0;
+	struct aluno a[100];
+		for(int i=0;v[i].endereco.numero != 0 || i<n;i++){
+			for(int j=(i+1);v[j].endereco.numero != 0 || j<n;j++){
+				const char* aux1[100]= { v[i].nome };
+				const char* aux2[100]= { v[j].nome };
+				if(strcmp(aux1[0],aux2[0]) > 0){
+					a[0]=v[i];
+					v[i]=v[j];
+					v[j]=a[0];
+				}
+			}
+		}
+	}
+}
+
+int menu(){
+	do{
+		system("cls");
+		printf("\n\nEcolha uma das opcoes abaixo no menu:\n\n");
+		printf("\n1- Cadastrar um aluno\n\n2- Pesquisar por matricula\n\n3- Listar os alunos cadastrados\n\n4- Excluir um aluno do cadastro\n\n5- Editar os dados de um aluno cadastrado\n\n6- Checar a media dos CRA's dos alunos e os alunos acima dessa media\n\n7- Checar os alunos com os maiores CRA's em ordem decrescente\n\n-8 Listar os alunos cadastrados (em ordem alfabetica)\n\n9- Sair do programa\n\n\n");
+		scanf("%d",&op);
+		
+		switch(op){
+			case 1:
+				system("cls");
+				cadastra_aluno(v,quantidade_alunos);
+				quantidade_alunos++;
+				break;
+				
+			case 2:
+				system("cls");
+				pesquisar_por_matricula(v,quantidade_alunos);
+				break;
+				
+			case 3:
+				system("cls");
+				listar_cadastrados(v,quantidade_alunos);
+				break;
+				
+			case 4:
+				system("cls");
+				if(quantidade_alunos==0){
+					system("cls");
+					printf("\n\nNenhum aluno cadastrado!\n\n");
+		 			getch();
+				}
+				else{
+					quantidade_alunos=exclui_aluno(v,quantidade_alunos);
+				}
+				break;
+				
+			case 5:
+				system("cls");
+				editar_aluno(v,quantidade_alunos);
+				break;
+				
+			case 6:
+				system("cls");
+				calcular_media_cra(v,quantidade_alunos);
+				break;	
+				
+			case 7:
+				system("cls");
+				mostrar_maiores_cras(v,quantidade_alunos);
+				break; 
+			
+			case 8:
+				system("cls");
+				coloca_em_ordem_alfabetica(v,quantidade_alunos);
+				listar_cadastrados(v,quantidade_alunos);
+				break;
+							
+			default:
+				if(op != 9){
+					printf("\nOpcao invalida!\n");
+					getch();
+				}
+		}
+	}while (op != 9);
+	
+	return 0;
+	getch();
+}
+
+int main(){
+    menu();
+}

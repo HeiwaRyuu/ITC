@@ -1,0 +1,84 @@
+Nome: Vítor Carvalho Marx Lima
+Matrícula : 11821ECP015
+
+***Enunciado:
+
+Fazer um programa que defina duas estruturas, sendo uma de endereço (rua, número, cep, bairro) e outra de cadastro de pessoas (nome, telefone, idade e endereço (estrutura aninhada)). O programa deverá permitir cadastrar uma pessoa e em seguida mostrar os dados na tela. 
+
+ Obs: 
+Declarar a variável do tipo estrutura no main( ). 
+Esta questão usa estrutura aninhada.
+É para utilizar duas funções, sendo uma pra cadastrar e outra para mostrar os dados na tela. 
+
+
+
+***Solução(Código):
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+
+
+struct endereco{
+	char rua[50];
+	int numero;
+	int cep;
+	char bairro[50];
+};
+
+struct cadastro{
+	char nome[50];
+	float tel;
+	int idade;
+	endereco end;
+};
+
+int main(){
+	cadastro pessoa;
+	printf("\n\nPara realizar seu cadastro, entre com os dados requisitados.\n\n");
+	
+	
+	printf("\n\nDigite seu nome:\n\n");
+	fflush(stdin);
+	gets(pessoa.nome);
+	system("cls");
+	
+	
+	printf("\n\nDigite o seu telefone:\n\n");
+	scanf("%f",&pessoa.tel);
+	system("cls");
+	
+	
+	printf("\n\nDigite o sua idade:\n\n");
+	scanf("%d",&pessoa.idade);
+	system("cls");
+	
+	
+	printf("\n\nEntre com a sua rua:\n\n");
+	fflush(stdin);
+	gets(pessoa.end.rua);
+	system("cls");
+	
+	
+	printf("\n\nDigite o seu numero:\n\n");
+	scanf("%d",&pessoa.end.numero);
+	system("cls");
+	
+	
+	printf("\n\nDigite o seu CEP:\n\n");
+	scanf("%d",&pessoa.end.cep);
+	system("cls");
+	
+	
+	printf("\n\nDigite o seu bairro:\n\n");
+	fflush(stdin);
+	gets(pessoa.end.bairro);
+	system("cls");
+	
+	
+	printf("\n\n O seu cadastro foi realizado com sucesso! Aqui estao seus dados:\n\n");
+	printf("Nome: %s\n\nTelefone: %.0f\n\nIdade: %d\n\nRua: %s\n\nNumero: %d\n\nCEP: %d\n\nBairro: %s\n\n",pessoa.nome,pessoa.tel,pessoa.idade,pessoa.end.rua,pessoa.end.numero,pessoa.end.cep,pessoa.end.bairro);
+	
+	getch();
+	return 0;
+}
